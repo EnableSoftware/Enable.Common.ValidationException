@@ -12,6 +12,7 @@ namespace Enable.Common
     [Serializable]
     public class ValidationException : Exception
     {
+        private const string ValidationMessagesInfoKey = "ValidationMessages";
         private readonly IEnumerable<string> _validationMessages = Enumerable.Empty<string>();
 
         public ValidationException()
@@ -46,9 +47,14 @@ namespace Enable.Common
             _validationMessages = validationMessages;
         }
 
-        protected ValidationException(SerializationInfo serializationInfo, StreamingContext streamingContext)
-            : base(serializationInfo, streamingContext)
+        protected ValidationException(
+            SerializationInfo info,
+            StreamingContext streamingContext)
+            : base(info, streamingContext)
         {
+            _validationMessages = (IEnumerable<string>)info.GetValue(
+                ValidationMessagesInfoKey,
+                typeof(IEnumerable<string>));
         }
 
         public IEnumerable<string> ValidationMessages
@@ -62,6 +68,8 @@ namespace Enable.Common
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
+
+            info.AddValue(ValidationMessagesInfoKey, _validationMessages);
         }
 
         public override string ToString()

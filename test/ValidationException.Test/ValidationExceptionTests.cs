@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using Ploeh.AutoFixture;
 using Xunit;
 
@@ -183,6 +185,56 @@ namespace Enable.Common
             {
                 Assert.Contains(validationMessage, result);
             }
+        }
+
+        [Fact]
+        public void Should_Roundtrip_Message_During_Serialization()
+        {
+            // Arrange
+            var formatter = new BinaryFormatter();
+            var message = Fixture.Create<string>();
+            var sut = new ValidationException(message);
+
+            // Act
+            ValidationException result;
+
+            using (var stream = new MemoryStream())
+            {
+                formatter.Serialize(stream, sut);
+                stream.Position = 0;
+                result = (ValidationException)formatter.Deserialize(stream);
+            }
+
+            // Assert
+            Assert.Equal(message, result.Message);
+        }
+
+        [Fact]
+        public void Should_Roundtrip_ValidationMessages_During_Serialization()
+        {
+            // Arrange
+            var formatter = new BinaryFormatter();
+
+            var validationMessages = new[]
+            {
+                Fixture.Create<string>(),
+                Fixture.Create<string>()
+            };
+
+            var sut = new ValidationException(validationMessages);
+
+            // Act
+            ValidationException result;
+
+            using (var stream = new MemoryStream())
+            {
+                formatter.Serialize(stream, sut);
+                stream.Position = 0;
+                result = (ValidationException)formatter.Deserialize(stream);
+            }
+
+            // Assert
+            Assert.Equal(validationMessages, result.ValidationMessages);
         }
     }
 }
