@@ -12,7 +12,8 @@ namespace Enable.Common
     [Serializable]
     public class ValidationException : Exception
     {
-        private readonly IEnumerable<string> _validationMessages;
+        private readonly IEnumerable<string> _validationMessages = Enumerable.Empty<string>();
+
         public ValidationException()
         {
         }
@@ -21,8 +22,6 @@ namespace Enable.Common
             : base(message)
         {
             Argument.IsNotNull(message, "message");
-
-            _validationMessages = Enumerable.Empty<string>();
         }
 
         public ValidationException(string message, Exception innerException)
@@ -67,7 +66,7 @@ namespace Enable.Common
 
         public override string ToString()
         {
-            StringBuilder message = new StringBuilder();
+            var message = new StringBuilder();
 
             if (Message != null)
             {
