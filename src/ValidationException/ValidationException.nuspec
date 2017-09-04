@@ -11,5 +11,9 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>$description$</description>
         <copyright>Copyright 2017</copyright>
+        <dependencies>
+            <dependency id="Enable.Common.Argument"
+                        version="1.0.0" />
+        </dependencies>
     </metadata>
 </package>
