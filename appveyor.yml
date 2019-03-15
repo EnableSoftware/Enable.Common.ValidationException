@@ -1,15 +1,26 @@
-version: 1.0.{build}
+version: 2.0.{build}
 configuration: Release
-assembly_info:
+
+image: Visual Studio 2017
+
+environment:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  
+dotnet_csproj:
   patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
+  file: '**\*.csproj'
+  version: '{version}'
+
 before_build:
-- cmd: nuget restore -verbosity quiet
+  - cmd: dotnet restore
+
 build:
   publish_nuget: true
   parallel: true
   verbosity: minimal
+  
+test:
+  assemblies: '**\*.Tests.dll'
+
 deploy: off
