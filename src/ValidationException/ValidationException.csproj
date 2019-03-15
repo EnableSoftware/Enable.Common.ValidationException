@@ -2,6 +2,20 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard1.3;net40</TargetFrameworks>
+    <CodeAnalysisRuleSet>../../CustomExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>Enable.Common.ValidationException</AssemblyName>
+    <Version></Version>
+    <Authors>Enable</Authors>
+    <Description>A .NET exception type that represents one or more business logic or validation error conditions.</Description>
+    <Copyright>Copyright © Enable</Copyright>
+    <PackageProjectUrl>https://github.com/EnableSoftware/Enable.Common.ValidationException</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/EnableSoftware.png</PackageIconUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/EnableSoftware/Enable.Common.ValidationException/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/EnableSoftware/Enable.Common.ValidationException</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
