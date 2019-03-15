@@ -66,12 +66,6 @@
     <Compile Include="ValidationExceptionTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ValidationException\ValidationException.csproj">
-      <Project>{f0518597-1a17-4e6f-af58-c1036893f457}</Project>
-      <Name>ValidationException</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

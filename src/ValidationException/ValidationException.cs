@@ -47,6 +47,7 @@ namespace Enable.Common
             _validationMessages = validationMessages;
         }
 
+#if NET40 || NETSTANDARD2_0
         protected ValidationException(
             SerializationInfo info,
             StreamingContext streamingContext)
@@ -57,19 +58,20 @@ namespace Enable.Common
                 typeof(IEnumerable<string>));
         }
 
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue(ValidationMessagesInfoKey, _validationMessages);
+        }
+#endif
+
         public IEnumerable<string> ValidationMessages
         {
             get
             {
                 return _validationMessages;
             }
-        }
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
-
-            info.AddValue(ValidationMessagesInfoKey, _validationMessages);
         }
 
         public override string ToString()
