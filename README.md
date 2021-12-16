@@ -13,3 +13,4 @@ throw new ValidationException("exception message", wrappedException);
 throw new ValidationException(new[] { "validation message 1", "validation message 2" });
 throw new ValidationException("exception message", new[] { "validation message 1", "validation message 2" });
 ```
+
