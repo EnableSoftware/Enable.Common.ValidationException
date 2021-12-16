@@ -14,7 +14,7 @@
     <Copyright>Copyright © Enable</Copyright>
     <PackageProjectUrl>https://github.com/EnableSoftware/Enable.Common.ValidationException</PackageProjectUrl>
     <PackageIconUrl>https://github.com/EnableSoftware.png</PackageIconUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/EnableSoftware/Enable.Common.ValidationException/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/EnableSoftware/Enable.Common.ValidationException/main/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/EnableSoftware/Enable.Common.ValidationException</RepositoryUrl>
   </PropertyGroup>
 
